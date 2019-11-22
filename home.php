@@ -77,11 +77,6 @@ $userRow=mysqli_fetch_array($res,MYSQLI_ASSOC);
 		<a href="logout.php?logout" class="mt-3 btn btn-outline-dark">Sign out</a>
 	</div>
 	<!-- form with content -->
-	<div class="container mt-3">
-		<h3>Hi Admin <?php echo $userRow['first_name'].' '.$userRow['last_name']; ?></h3>
-		<a href="logout.php?logout" class='mt-3 btn btn-outline-dark'>Sign out</a>
-		<a href='create.php'class='btn btn-warning float-right'>Add new place/event</a>
-	</div>
 
 	<ul class="col-8 mt-5 mx-auto list-unstyled">
 		<?php 
@@ -115,7 +110,7 @@ $userRow=mysqli_fetch_array($res,MYSQLI_ASSOC);
             <p>". $value["date"]." at ".$value["time"]."</p>
             <p>Ticket: ".$value["ticket"]."</p>
             <p>ADDRESS: ". $value["zip"]." ". $value["city"].", ".$value["country"].", ". $value["address"]."</p><br>
-            <p>For more information: <a href=".$value["concert_web_address"].">".$value["concert_web_address"]."</p>
+            <p>For more information: <a href=".$value["concert_web_address"].">".$value["concert_web_address"]."</a></p>
           </div>
         </li><br><hr/>";
     }

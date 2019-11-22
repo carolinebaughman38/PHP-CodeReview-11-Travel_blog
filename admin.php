@@ -98,7 +98,7 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
             <p>". $value["date"]." at ".$value["time"]."</p>
             <p>Ticket: ".$value["ticket"]."</p>
             <p>ADDRESS: ". $value["zip"]." ". $value["city"].", ".$value["country"].", ". $value["address"]."</p><br>
-            <p>For more information: <a href=".$value["concert_web_address"].">".$value["concert_web_address"]."</p>            
+            <p>For more information: <a href=".$value["concert_web_address"].">".$value["concert_web_address"]."</a></p>            
           <a href='update.php?id=".$value["fk_concert_id"]."'><button type='button' class='btn btn-success mb-3 mt-4'>update</button></a><br>
           <a href='delete.php?id=".$value["fk_concert_id"]."'><button type='button' class='btn btn-danger'>delete</button></a><br>
           </div>
