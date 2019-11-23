@@ -15,9 +15,10 @@ p{
 header {
 	background: url('img/main.jpg') no-repeat 50% 30%;
     background-size: cover;
-    height: 400px;
+    height: 470px;
     margin-bottom: 0 !important;
 }
+
 /* text area for description in update.php */
 #textarea{
 	width: 95%; 
