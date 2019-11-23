@@ -49,10 +49,6 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
               		<a class="nav-link" href="restaurant.php">Restaurants<span class="sr-only">(current)</span></a>
             	</li>
    			</ul>
-   			<form class="form-inline my-2 my-lg-0">
-     			<input class="form-control mr-sm-2" type="search" name="search_text" id="search_text" aria-label="Search">
-      			<button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-    		</form>	
    		</div> 		
    	</nav>
    </header>

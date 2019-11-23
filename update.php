@@ -3,8 +3,8 @@
 	require_once "dbconnect.php";
 
 	if(isset($_GET["id"])){
-		$id = $_GET["id"];
-		$sql = "SELECT * FROM `concert` WHERE id = $id";
+		$concert_id = $_GET["id"];
+		$sql = "SELECT * FROM `concert` WHERE `id` = $concert_id";
 		$result = mysqli_query($conn ,$sql);
 		$row = $result->fetch_assoc();
 	}
@@ -20,14 +20,14 @@
       if (!file_exists($newname)) {
         if ((move_uploaded_file($_FILES['uploaded_file']['tmp_name'],$newname))) {
         $concert_name = $_POST['concert_name'];
-  			$concert_short_description = $_POST['concert_short_description'];
+  		$concert_short_description = $_POST['concert_short_description'];
         $concert_web_address = $_POST['concert_web_address'];
         $date = $_POST['date'];
         $time = $_POST['time'];
         $ticket = $_POST['ticket'];
-  			$id = $_GET['id'];
+  		$concert_id = $_GET['id'];
 
-	$sql = "UPDATE `concert` SET `concert_name`='$concert_name', `concert_short_description`='$concert_short_description',`concert_web_address`='$concert_web_address',`date`='$date',`time`='$time',`ticket`='$ticket',`concert_image`='$newname' WHERE id = $id";
+	$sql = "UPDATE `concert` SET `concert_name`='$concert_name',`concert_short_description`='$concert_short_description',`concert_web_address`='$concert_web_address',`date`='$date',`time`='$time',`ticket`='$ticket',`concert_image`='$newname' WHERE `id`=$concert_id";
 
 	if(mysqli_query($conn, $sql)){
 		//echo "<h3>Updated successfully</h3>";
@@ -49,9 +49,9 @@
         $date = $_POST['date'];
         $time = $_POST['time'];
         $ticket = $_POST['ticket'];
-        $id = $_GET["id"];
+        $concert_id = $_GET["id"];
 
-	$sql = "UPDATE `concert` SET `concert_name`='$concert_name', `concert_short_description`='$concert_short_description',`concert_web_address`='$concert_web_address',`date`='$date',`time`='$time',`ticket`='$ticket' WHERE id = $id";;
+	$sql = "UPDATE `concert` SET `concert_name`='$concert_name', `concert_short_description`='$concert_short_description',`concert_web_address`='$concert_web_address',`date`='$date',`time`='$time',`ticket`='$ticket' WHERE `id` = $concert_id";;
 
 	if(mysqli_query($conn, $sql)){
 		//echo "<h3>Updated successfully</h3>";
@@ -111,14 +111,14 @@ $result = $res->fetch_all(MYSQLI_ASSOC);
    	<div class="container mt-5">
 		
 	<!-- form for update image -->
-		<form enctype="multipart/form-data" method="post">
-			<input type="hidden" name="id" value="<?php echo $row['id'] ?>">
-			<p>Concert name: <input type="text" name="concert_name" value="<?php echo $row['concert_name'] ?>"></p>
-			<p>Short description: <input type="text" name="concert_short_description" id="textarea" value="<?php echo $row['concert_short_description'] ?>"></p>
+	<form enctype="multipart/form-data" method="post">
+		<input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+		<p>Concert name: <input type="text" name="concert_name" value="<?php echo $row['concert_name'] ?>"></p>
+		<p>Short description: <input type="text" name="concert_short_description" id="textarea" value="<?php echo $row['concert_short_description'] ?>"></p>
     	<p>Date: <input type="date" name="date" value="<?php echo $row['date'] ?>"></p>
-      <p>Time: <input type="time" name="time" value="<?php echo $row['time'] ?>"></p>
-      <p>Price: <input type="text" name="ticket" value="<?php echo $row['ticket'] ?>"></p>
-      <p>Web Address: <input type="text" name="concert_web_address" value="<?php echo $row['concert_web_address'] ?>"></p>
+        <p>Time: <input type="time" name="time" value="<?php echo $row['time'] ?>"></p>
+        <p>Price: <input type="text" name="ticket" value="<?php echo $row['ticket'] ?>"></p>
+        <p>Web Address: <input type="text" name="concert_web_address" value="<?php echo $row['concert_web_address'] ?>"></p>
 
     	<input type="hidden" name="MAX_FILE_SIZE" value="1000000" /> 
     	<p>Image: <img width="250px" src="<?php echo $row['concert_image'] ?>" alt=""></p>
