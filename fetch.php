@@ -36,7 +36,7 @@ if(mysqli_num_rows($result) > 0)
             <p>ADDRESS: ". $value["zip"]." ". $value["city"].", ".$value["country"].", ". $value["address"]."</p><br>
             <p>For more information: <a href=".$value["to_do_web_address"].">".$value["to_do_web_address"]."</a></p>";
         if(isset($_SESSION['admin'])) {
-        echo "<a class='btn btn-success mb-3 mt-4' href='update.php?id=".$value["fk_to_do_id"]."'>update</a><br>
+        echo "<a class='btn btn-success mb-3 mt-4' href='update_todo.php?id=".$value["fk_to_do_id"]."'>update</a><br>
           <a class='btn btn-danger' href='delete.php?id=".$value["fk_to_do_id"]."'>delete</a><br>";
   }echo "</div>
         </li><hr/>";
@@ -114,7 +114,7 @@ if(mysqli_num_rows($result) > 0)
             <p>ADDRESS: ". $value["zip"]." ". $value["city"].", ".$value["country"].", ". $value["address"]."</p><br>
             <p>For more information: <a href=".$value["restaurant_web_address"].">".$value["restaurant_web_address"]."</a></p>";
         if(isset($_SESSION['admin'])) {
-        echo "<a  class='btn btn-success mb-3 mt-4'href='update.php?id=".$value["fk_restaurant_id"]."'>update</a><br>
+        echo "<a  class='btn btn-success mb-3 mt-4'href='update_restaurant.php?id=".$value["fk_restaurant_id"]."'>update</a><br>
           <a class='btn btn-danger' href='delete.php?id=".$value["fk_restaurant_id"]."'>delete</a><br>";
   }echo "</div>
         </li><hr/>";
