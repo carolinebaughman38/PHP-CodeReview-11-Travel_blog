@@ -1,28 +1,37 @@
 <?php 
 
-	require_once "dbconnect.php";
+ob_start();
+session_start();
+require_once "dbconnect.php";
 
-	if(isset($_POST["submit"])){
+	if(isset($_GET["event"])){
+		// to fetch all data from 'location'
+		$sql_concert = "SELECT * FROM location";
+		$result = mysqli_query($conn ,$sql_concert);
+		$rows = $result->fetch_all(MYSQLI_ASSOC);
 
-	if((!empty($_FILES["uploaded_file"])) && ($_FILES['uploaded_file']['error'] == 0)) {
- 		$filename = basename($_FILES['uploaded_file']['name']);
-  		$ext = substr($filename, strrpos($filename, '.') + 1);
-  	if (($ext == "jpg") && ($_FILES["uploaded_file"]["type"] == "image/jpeg") && ($_FILES["uploaded_file"]["size"] < 800000000)) {
+// to upload img
+	if((!empty($_FILES['uploaded_file'])) && ($_FILES['uploaded_file']['error'] == 0)) {
+ 	 $filename = basename($_FILES['uploaded_file']['name']);
+  	$ext = substr($filename, strrpos($filename, '.') + 1);
+
+  if (($ext == "jpg") && ($_FILES["uploaded_file"]["type"] == "image/jpeg") && 
+	($_FILES["uploaded_file"]["size"] < 800000000000)) {
       $newname = dirname(_FILE_).'/uploads/'.$filename;
 // "uploads" is a folder inside of the main folder
       if (!file_exists($newname)) {
         if ((move_uploaded_file($_FILES['uploaded_file']['tmp_name'],$newname))) {
         $concert_name = $_POST['concert_name'];
-  		$concert_short_description = $_POST['concert_short_description'];
-        $concert_web_address = $_POST['concert_web_address'];
         $date = $_POST['date'];
         $time = $_POST['time'];
+        $concert_short_description = $_POST['concert_short_description'];
         $ticket = $_POST['ticket'];
+        $concert_web_address = $_POST['concert_web_address'];
 
-		$sql = "INSERT INTO concert(`concert_name`,`concert_short_description`,`concert_web_address`,`date`,`time`,`ticket`,`concert_image`)VALUES ('$concert_name','$concert_short_description','$concert_web_address','$date','$time','$ticket','$newname')";
+		$sql = "INSERT INTO concert(concert_name,`date`,`time`,concert_short_description,ticket,concert_web_address,concert_image)VALUES('$concert_name','$date','$time','$concert_short_description','$ticket','$concert_web_address','$newname')";
 
 		if($conn->query($sql)=== TRUE){
-			//echo "<h3>Updated successfully</h3>";
+		echo "<h3>Updated successfully</h3>";
 		header("Refresh:2; url=admin.php");
    			} else {
            echo "Error: A problem occurred during file upload!";
@@ -35,13 +44,13 @@
   }
 } else {
  		$concert_name = $_POST['concert_name'];
-  		$concert_short_description = $_POST['concert_short_description'];
-        $concert_web_address = $_POST['concert_web_address'];
         $date = $_POST['date'];
         $time = $_POST['time'];
+        $concert_short_description = $_POST['concert_short_description'];
         $ticket = $_POST['ticket'];
+        $concert_web_address = $_POST['concert_web_address'];
 
-	$sql = "INSERT INTO concert(`concert_name`,`concert_short_description`,`concert_web_address`,`date`,`time`,`ticket`)VALUES('$concert_name','$concert_short_description','$concert_web_address','$date','$time','$ticket')";
+		$sql = "INSERT INTO concert(concert_name,`date`,`time`,concert_short_description,ticket,concert_web_address)VALUES('$concert_name','$date','$time','$concert_short_description','$ticket','$concert_web_address')";
 
 }
 }
@@ -96,17 +105,20 @@
       	<p>Time: <input type="time" name="time"></p>
       	<p>Price: <input type="text" name="ticket" required></p>
       	<p>Web Address: <input type="text" name="concert_web_address" required></p>
-
+      	<p>Address: <select type="text" name="address">
+      		<?php foreach ($rows as $row) {
+      			echo "<option value='".$row['id']."'>".$row['address']."</option>";
+      		}  ?>
+      	</select></p>
 		<input type="hidden" name="MAX_FILE_SIZE" value="1000000" /> 
-		<p>Image: <input width="250px" type="file" name="uploaded_file" placeholder="choose a file to upload...jpg" required>
+		<p>Image: <input type="file" name="uploaded_file" placeholder="choose a file to upload...jpg" required>
 		<img width="250px"></p>
-
+		
 		<button class="btn btn-success mr-2 mb-4" type="submit" name="submit" value="insert">Create data</button>
 
-    <a href="index.php" class="btn btn-warning mb-4">Back to Home Page</a>
+    <a href="admin.php" class="btn btn-warning mb-4">Back to Home Page</a>
 	</form>
 	</div>
-	
 
 	<!-- jQuery,Popper,Bootstrap-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

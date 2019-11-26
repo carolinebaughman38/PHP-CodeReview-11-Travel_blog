@@ -50,7 +50,7 @@ if(isset($_GET["id"])){
         $restaurant_type = $_POST['restaurant_type'];
         $restaurant_short_description = $_POST['restaurant_short_description'];
         $telephone = $_POST['telephone'];
-        $restaurant_web_address = $_POST['to_do_web_address'];
+        $restaurant_web_address = $_POST['restaurant_web_address'];
 
   $sql_restaurant = "UPDATE restaurant SET restaurant_name='$restaurant_name',restaurant_type='$restaurant_type',restaurant_short_description='$restaurant_short_description',telephone='$telephone',restaurant_web_address='$restaurant_web_address' WHERE id=$restaurant_id";
 

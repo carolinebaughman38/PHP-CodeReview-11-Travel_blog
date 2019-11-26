@@ -63,9 +63,9 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 	<div class="container mt-3">
 		<h3>Hi Admin <?php echo $userRow['first_name'].' '.$userRow['last_name']; ?></h3>
 		<a href="logout.php?logout" class='mt-3 btn btn-outline-dark'>Sign out</a>
-		<a href='create.php'class='btn btn-warning float-right ml-2'>New event</a>
-		<a href='create_todo.php'class='btn btn-danger float-right ml-2'>New To-Do</a>
-		<a href='create_restaurant.php'class='btn btn-success float-right'>New restaurant</a>
+		<a href='create.php?event'class='btn btn-warning float-right ml-2'>New event</a>
+		<a href='create.php?todo'class='btn btn-warning float-right ml-2'>New To-Do</a>
+		<a href='create.php?restaurant'class='btn btn-warning float-right'>New restaurant</a>
 	</div>
 
 	<ul class="col-8 mt-5 mx-auto list-unstyled">
